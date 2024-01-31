@@ -6,3 +6,10 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0;
 `;
+
+export const Content = styled.div`
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 16px;
+`;

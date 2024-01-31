@@ -1,11 +1,11 @@
-import PageHeader from '../../components/PageHeader';
+import PageHeader from '../../components/ContentHeader';
 import UseForm from '../../components/UserForm';
 
 export default function NewUser() {
   return (
     <>
       <PageHeader
-        title="Novo Usuário"
+        title="Cadastro de Usuários"
       />
       <UseForm />
     </>

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
 
+  display: flex;
+  margin-top: 32px;
   margin-bottom: 24px;
   a {
     text-decoration: none;
@@ -10,7 +12,7 @@ export const Container = styled.header`
 
     span {
       color: #000;
-      font-weight: bold;
+      font-weight: 500;
     }
 
     img {

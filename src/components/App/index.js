@@ -4,8 +4,9 @@ import Routes from '../../Routes';
 import GlobalStyles from '../../assets/styles/global';
 
 import Header from '../Header';
+import PageHeader from '../PageHeader';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
 
       <Container>
         <Header />
-        <Routes />
+        <PageHeader />
+        <Content>
+          <Routes />
+        </Content>
       </Container>
     </BrowserRouter>
 
