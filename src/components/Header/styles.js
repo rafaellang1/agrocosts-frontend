@@ -1,9 +1,15 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.header`
-  margin-top: 74px;
-  margin-bottom: 48px;
+  margin-bottom: 5px;
+  height: 95px;
+  width: 100%;
+  background: #00920F;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
+  img {
+    margin: 30px;
+  }
 `;

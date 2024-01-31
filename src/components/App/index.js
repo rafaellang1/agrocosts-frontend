@@ -1,9 +1,11 @@
 import { BrowserRouter } from 'react-router-dom';
-import { Container } from '../Header/styles';
+import Routes from '../../Routes';
+
+import GlobalStyles from '../../assets/styles/global';
 
 import Header from '../Header';
 
-import GlobalStyles from '../../assets/styles/global';
+import { Container } from './styles';
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
 
       <Container>
         <Header />
+        <Routes />
       </Container>
     </BrowserRouter>
 
