@@ -2,14 +2,14 @@ import { styled } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const Header = styled.header`
     display: flex;
     justify-content: center;
     width: 100%;
-    background: #ddd;
+    background: #E9E9E9;
     align-items: center;
     text-align: center;
     font-size: 16px;

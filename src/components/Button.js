@@ -5,11 +5,11 @@ export default styled.button`
   border: none;
   padding: 0 16px;
   background: #00920F;
-  font-size: 16px;
+  font-size: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
   font-weight: bold;
   color: #FFF;
-  border-radius: 4px;
+  border-radius: 16px;
   transition: background 0.2s ease-in;
 
   &:hover {

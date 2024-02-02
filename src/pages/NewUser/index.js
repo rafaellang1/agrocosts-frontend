@@ -1,13 +1,15 @@
-import PageHeader from '../../components/ContentHeader';
+import ContentHeader from '../../components/ContentHeader';
 import UseForm from '../../components/UserForm';
 
 export default function NewUser() {
   return (
     <>
-      <PageHeader
+      <ContentHeader
         title="Cadastro de Usuários"
       />
-      <UseForm />
+      <UseForm
+        buttonLabel="Cadastrar"
+      />
     </>
 
   );

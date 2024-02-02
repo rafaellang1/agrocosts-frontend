@@ -16,8 +16,9 @@ export const Container = styled.header`
     }
 
     img {
+      width: 24px;
       margin-right: 8px;
-      transform: rotate(-180deg);
+      transform: rotate(-0deg);
     }
   }
 
