@@ -1,5 +1,5 @@
 import ContentHeader from '../../components/ContentHeader';
-import UseForm from '../../components/UserForm';
+import UserForm from '../../components/UserForm';
 
 export default function NewUser() {
   return (
@@ -7,7 +7,7 @@ export default function NewUser() {
       <ContentHeader
         title="Cadastro de Usuários"
       />
-      <UseForm
+      <UserForm
         buttonLabel="Cadastrar"
       />
     </>

@@ -16,7 +16,7 @@ export const Container = styled.header`
     }
 
     img {
-      width: 24px;
+      width: 26px;
       margin-right: 8px;
       transform: rotate(-0deg);
     }

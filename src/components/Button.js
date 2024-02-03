@@ -12,8 +12,10 @@ export default styled.button`
   border-radius: 16px;
   transition: background 0.2s ease-in;
 
+
   &:hover {
     background: #008000;
+    cursor: pointer;
   }
 
   &:active {
