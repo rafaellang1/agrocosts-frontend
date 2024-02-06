@@ -5,7 +5,7 @@ import { Container, Header, Card } from './styles';
 import farm from '../../assets/images/farm.png';
 import user from '../../assets/images/user.png';
 import newProduct from '../../assets/images/newProduct.png';
-import endHarvest from '../../assets/images/endHarvest.png';
+import harvest from '../../assets/images/harvest.png';
 import report from '../../assets/images/report.png';
 
 export default function PageHeader() {
@@ -42,8 +42,8 @@ export default function PageHeader() {
         <Card>
           <div className="head">
             <Link to="/harvest">
-              <img src={endHarvest} alt="icon-user" width="50" />
-              <strong>Encerrar Safra</strong>
+              <img src={harvest} alt="icon-user" width="50" />
+              <strong>Cadastro de Safra</strong>
             </Link>
           </div>
         </Card>

@@ -15,7 +15,7 @@ export default function ProductForm({ buttonLabel }) {
   const [aplicationArea, setAplicationArea] = useState('');
   const [unitaryValue, setunitaryValue] = useState('');
   const [amount, setAmout] = useState('');
-  const [propety, setPropety] = useState('');
+  const [property, setProperty] = useState('');
 
   function handleProductIdChange(event) {
     setProductId(event.target.value);
@@ -45,8 +45,8 @@ export default function ProductForm({ buttonLabel }) {
     setAmout(event.target.value);
   }
 
-  function handlePropetyChange(event) {
-    setPropety(event.target.value);
+  function handlePropertyChange(event) {
+    setProperty(event.target.value);
   }
 
   const handleSubmit = (event) => {
@@ -113,8 +113,8 @@ export default function ProductForm({ buttonLabel }) {
       <FormGroup>
         <Input
           placeholder="Selecione a propriedade que será utilizado o produto"
-          value={propety}
-          onChange={handlePropetyChange}
+          value={property}
+          onChange={handlePropertyChange}
         />
       </FormGroup>
 
