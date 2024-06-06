@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Form, ButtonContainer } from './style';
 
 import Input from '../Input';
+import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
 
@@ -13,9 +14,10 @@ export default function ProductForm({ buttonLabel }) {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState('');
   const [aplicationArea, setAplicationArea] = useState('');
-  const [unitaryValue, setunitaryValue] = useState('');
-  const [amount, setAmout] = useState('');
+  const [unitValue, setunitaryValue] = useState('');
+  const [totalValue, setTotalValue] = useState('');
   const [property, setProperty] = useState('');
+  const [harvest, setHarvest] = useState('');
 
   function handleProductIdChange(event) {
     setProductId(event.target.value);
@@ -37,20 +39,25 @@ export default function ProductForm({ buttonLabel }) {
     setAplicationArea(event.target.value);
   }
 
-  function handleUnitaryValueChange(event) {
+  function handleUnitValueChange(event) {
     setunitaryValue(event.target.value);
   }
 
-  function handleAmoutchange(event) {
-    setAmout(event.target.value);
+  function handleTotalValueChange(event) {
+    setTotalValue(event.target.value);
   }
 
   function handlePropertyChange(event) {
     setProperty(event.target.value);
   }
 
+  function handleHarvestChange(event) {
+    setHarvest(event.target.value);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Previne o Form de redirecionar a pagina ao enviar o form pelo submit
   };
 
   return (
@@ -97,25 +104,41 @@ export default function ProductForm({ buttonLabel }) {
       <FormGroup>
         <Input
           placeholder="Valor unitário"
-          value={unitaryValue}
-          onChange={handleUnitaryValueChange}
+          value={unitValue}
+          onChange={handleUnitValueChange}
         />
       </FormGroup>
 
       <FormGroup>
         <Input
           placeholder="Valor total"
-          value={amount}
-          onChange={handleAmoutchange}
+          value={totalValue}
+          onChange={handleTotalValueChange}
         />
       </FormGroup>
 
       <FormGroup>
-        <Input
+        <Select
           placeholder="Selecione a propriedade que será utilizado o produto"
           value={property}
           onChange={handlePropertyChange}
-        />
+        >
+          <option value="Selecione a fazenda">Selecione a fazenda</option>
+          <option value="Terere">Terere</option>
+          <option value="Mato Grande">Mato Grande</option>
+        </Select>
+      </FormGroup>
+
+      <FormGroup>
+        <Select
+          placeholder="Selecione a safra atual"
+          value={harvest}
+          onChange={handleHarvestChange}
+        >
+          <option value="Selecione a safra">Selecione a safra</option>
+          <option value="Soja 2023">Soja 2023</option>
+          <option value="Milho 2023">Soja 2023</option>
+        </Select>
       </FormGroup>
 
       <ButtonContainer>
