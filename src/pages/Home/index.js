@@ -9,13 +9,3 @@ export default function Home() {
     </Container>
   );
 }
-
-fetch('http://localhost:3001/products')
-  .then((response) => {
-    console.log('response', response);
-  })
-
-  .catch((error) => {
-    // só cai no catch se for problema de conexao, caso for status code o catch nao captura
-    console.log('erro', error);
-  });

@@ -5,7 +5,7 @@ import NewProduct from './pages/NewProduct';
 import NewUser from './pages/NewUser';
 import Farm from './pages/Farm';
 import Harvest from './pages/Harvest';
-import Report from './pages/Report';
+import ReportResult from './pages/ReportResult';
 
 export default function Routes() {
   return (
@@ -16,7 +16,7 @@ export default function Routes() {
       <Route path="/user" component={NewUser} />
       <Route path="/farm" component={Farm} />
       <Route path="/harvest" component={Harvest} />
-      <Route path="/reports" component={Report} />
+      <Route path="/reports" component={ReportResult} />
     </Switch>
   );
 }
