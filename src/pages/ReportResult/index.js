@@ -17,9 +17,9 @@ export default function ReportResult() {
         const json = await response.json();
         setFarms(json);
       })
-      .catch(() => {
+      .catch((error) => {
         // só cai no catch se for problema de conexao, caso for status code o catch nao captura
-        // console.log('erro', error);
+        console.log('erro', error);
       });
   }, []);
 
@@ -65,7 +65,7 @@ export default function ReportResult() {
             </div>
 
             <div className="actions">
-              <Link to="/">
+              <Link to={`/editfarm/${farm.id}`}>
                 <img src={edit} alt="Edit" width="30" />
               </Link>
               <button type="button">

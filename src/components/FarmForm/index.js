@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Form, ButtonContainer } from './style';
 
 import Input from '../Input';
+import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
 
@@ -13,6 +14,19 @@ export default function FarmForm({ buttonLabel }) {
   const [inscription, setInscription] = useState('');
   const [sizeProperty, setSizeProperty] = useState('');
   const [location, setLocation] = useState('');
+  const [usersId, setUsersId] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/users')
+      .then(async (response) => {
+        const json = await response.json();
+        setUsers(json);
+      })
+      .catch((error) => {
+        console.log('erro', error);
+      });
+  }, []);
 
   function handleProductIdChange(event) {
     setProductId(event.target.value);
@@ -78,6 +92,21 @@ export default function FarmForm({ buttonLabel }) {
           value={location}
           onChange={handleLocationChange}
         />
+      </FormGroup>
+
+      <FormGroup>
+        <Select
+          value={usersId}
+          onChange={(event) => setUsersId(event.target.value)}
+        >
+          <option value="">Sem usuario</option>
+
+          {users.map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.name}
+            </option>
+          ))}
+        </Select>
       </FormGroup>
 
       <ButtonContainer>

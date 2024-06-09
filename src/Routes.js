@@ -3,9 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import NewProduct from './pages/NewProduct';
 import NewUser from './pages/NewUser';
-import Farm from './pages/Farm';
-import Harvest from './pages/Harvest';
+import NewFarm from './pages/NewFarm';
+import NewHarvest from './pages/NewHarvest';
 import ReportResult from './pages/ReportResult';
+import EditUser from './pages/EditUser';
+import EditFarm from './pages/EditFarm';
 
 export default function Routes() {
   return (
@@ -14,8 +16,10 @@ export default function Routes() {
       <Route path="/" exact component={Home} />
       <Route path="/product" component={NewProduct} />
       <Route path="/user" component={NewUser} />
-      <Route path="/farm" component={Farm} />
-      <Route path="/harvest" component={Harvest} />
+      <Route path="/edituser/:id" component={EditUser} />
+      <Route path="/farm" component={NewFarm} />
+      <Route path="/editfarm/:id" component={EditFarm} />
+      <Route path="/harvest" component={NewHarvest} />
       <Route path="/reports" component={ReportResult} />
     </Switch>
   );
