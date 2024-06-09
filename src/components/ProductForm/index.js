@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Form, ButtonContainer } from './style';
 
@@ -16,8 +16,31 @@ export default function ProductForm({ buttonLabel }) {
   const [aplicationArea, setAplicationArea] = useState('');
   const [unitValue, setunitaryValue] = useState('');
   const [totalValue, setTotalValue] = useState('');
-  const [property, setProperty] = useState('');
-  const [harvest, setHarvest] = useState('');
+  const [farms, setFarms] = useState([]);
+  const [farmsId, setFarmsId] = useState('');
+  const [harvests, setHarvests] = useState([]);
+  const [harvestsId, setHarvestsId] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [farmResponse, harvestResponse] = await Promise.all([
+          fetch('http://localhost:3001/farms'),
+          fetch('http://localhost:3001/harvests'),
+        ]);
+
+        const farmData = await farmResponse.json();
+        const harvestData = await harvestResponse.json();
+
+        setFarms(farmData);
+        setHarvests(harvestData);
+      } catch (error) {
+        console.log('erro', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function handleProductIdChange(event) {
     setProductId(event.target.value);
@@ -45,14 +68,6 @@ export default function ProductForm({ buttonLabel }) {
 
   function handleTotalValueChange(event) {
     setTotalValue(event.target.value);
-  }
-
-  function handlePropertyChange(event) {
-    setProperty(event.target.value);
-  }
-
-  function handleHarvestChange(event) {
-    setHarvest(event.target.value);
   }
 
   const handleSubmit = (event) => {
@@ -120,24 +135,33 @@ export default function ProductForm({ buttonLabel }) {
       <FormGroup>
         <Select
           placeholder="Selecione a propriedade que será utilizado o produto"
-          value={property}
-          onChange={handlePropertyChange}
+          value={farmsId}
+          onChange={(event) => setFarmsId(event.target.value)}
         >
-          <option value="Selecione a fazenda">Selecione a fazenda</option>
-          <option value="Terere">Terere</option>
-          <option value="Mato Grande">Mato Grande</option>
+          <option value="Selecione a fazenda">Selecione a fazenda para utilização</option>
+
+          {farms.map((farm) => (
+            <option key={farm.id} value={farm.id}>
+              {farm.name}
+            </option>
+          ))}
         </Select>
+
       </FormGroup>
 
       <FormGroup>
         <Select
           placeholder="Selecione a safra atual"
-          value={harvest}
-          onChange={handleHarvestChange}
+          value={harvestsId}
+          onChange={(event) => setHarvestsId(event.target.value)}
         >
-          <option value="Selecione a safra">Selecione a safra</option>
-          <option value="Soja 2023">Soja 2023</option>
-          <option value="Milho 2023">Soja 2023</option>
+          <option value="Selecione a safra">Selecione a safra atual</option>
+
+          {harvests.map((harvest) => (
+            <option key={harvest.id} value={harvest.id}>
+              {harvest.name}
+            </option>
+          ))}
         </Select>
       </FormGroup>
 

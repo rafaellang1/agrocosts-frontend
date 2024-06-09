@@ -17,6 +17,7 @@ export default function FarmForm({ buttonLabel }) {
   const [usersId, setUsersId] = useState('');
   const [users, setUsers] = useState([]);
 
+  // req para API para solicitar os dados dos users para popular o botao: usuario no formulario
   useEffect(() => {
     fetch('http://localhost:3001/users')
       .then(async (response) => {

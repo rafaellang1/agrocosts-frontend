@@ -13,6 +13,7 @@ width: 100%;
   font-size: 16px;
   transition: border-color 0.2s ease-in;
   appearance: none;
+  color: #757575;
 
   &:focus {
     border-color: #777;

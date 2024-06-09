@@ -36,6 +36,7 @@ export default function ReportResult() {
         </strong>
       </Header>
 
+      {/* Faz um map p/ buscar as farms cadastradas e retornar um novo arr com os mesmos dados */}
       {farms.map((farm) => (
         <Card key={farm.id}>
           <div className="info">

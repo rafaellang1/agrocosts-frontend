@@ -8,15 +8,10 @@ import FormGroup from '../FormGroup';
 import Button from '../Button';
 
 export default function FormHarvest({ buttonLabel }) {
-  const [harvestId, setHarvestId] = useState('001');
   const [harvestYear, setHarvestYear] = useState('');
   const [productName, setProductName] = useState('');
   const [initialDate, setInitialDate] = useState('');
   const [endDate, setEndDate] = useState('');
-
-  function handleHarvestIdChange(event) {
-    setHarvestId(event.target.value);
-  }
 
   function handleHarvestYearChange(event) {
     setHarvestYear(event.target.value);
@@ -42,9 +37,9 @@ export default function FormHarvest({ buttonLabel }) {
     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Input
-          placeholder="Código do Safra"
-          value={harvestId}
-          onChange={handleHarvestIdChange}
+          placeholder="Informe o produto que será utilizado"
+          value={productName}
+          onChange={handleProductNameChange}
         />
       </FormGroup>
 
@@ -53,14 +48,6 @@ export default function FormHarvest({ buttonLabel }) {
           placeholder="Informe o ano da safra vigente"
           value={harvestYear}
           onChange={handleHarvestYearChange}
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <Input
-          placeholder="Informe o produto que será utilizado"
-          value={productName}
-          onChange={handleProductNameChange}
         />
       </FormGroup>
 
