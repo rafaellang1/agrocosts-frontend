@@ -9,6 +9,10 @@ class HarvestsService {
   async listHarvests() {
     return this.httpClient.get('/harvests');
   }
+
+  async createHarvests(harvest) {
+    return this.httpClient.post('/harvests', harvest);
+  }
 }
 
 export default new HarvestsService();

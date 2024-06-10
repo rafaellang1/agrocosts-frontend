@@ -10,14 +10,14 @@ import Button from '../Button';
 import FarmsService from '../../services/FarmsService';
 import HarvestsService from '../../services/HarvestsService';
 
-export default function ProductForm({ buttonLabel }) {
+export default function ProductForm({ buttonLabel, onSubmit }) {
   const [productId, setProductId] = useState('001');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState('');
   const [aplicationArea, setAplicationArea] = useState('');
   const [unitValue, setunitaryValue] = useState('');
-  const [totalValue, setTotalValue] = useState('');
+  // const [totalValue, setTotalValue] = useState('');
   const [farms, setFarms] = useState([]);
   const [farmsId, setFarmsId] = useState('');
   const [harvests, setHarvests] = useState([]);
@@ -90,12 +90,16 @@ export default function ProductForm({ buttonLabel }) {
     setunitaryValue(event.target.value);
   }
 
-  function handleTotalValueChange(event) {
-    setTotalValue(event.target.value);
-  }
+  // function handleTotalValueChange(event) {
+  //   setTotalValue(event.target.value);
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    onSubmit({
+      name, description, quantity, aplicationArea, unitValue, farmsId, harvestsId,
+    });
     // Previne o Form de redirecionar a pagina ao enviar o form pelo submit
   };
 
@@ -147,14 +151,14 @@ export default function ProductForm({ buttonLabel }) {
           onChange={handleUnitValueChange}
         />
       </FormGroup>
-
+      {/*
       <FormGroup>
         <Input
           placeholder="Valor total"
           value={totalValue}
           onChange={handleTotalValueChange}
         />
-      </FormGroup>
+      </FormGroup> */}
 
       <FormGroup>
         <Select
@@ -202,4 +206,5 @@ export default function ProductForm({ buttonLabel }) {
 
 ProductForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

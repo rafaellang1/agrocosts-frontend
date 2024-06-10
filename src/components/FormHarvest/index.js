@@ -7,18 +7,13 @@ import Input from '../Input';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
 
-export default function FormHarvest({ buttonLabel }) {
-  const [harvestYear, setHarvestYear] = useState('');
-  const [productName, setProductName] = useState('');
+export default function FormHarvest({ buttonLabel, onSubmit }) {
+  const [name, setName] = useState('');
   const [initialDate, setInitialDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  function handleHarvestYearChange(event) {
-    setHarvestYear(event.target.value);
-  }
-
-  function handleProductNameChange(event) {
-    setProductName(event.target.value);
+  function handleNameChange(event) {
+    setName(event.target.value);
   }
 
   function handleInitialDateChange(event) {
@@ -31,23 +26,19 @@ export default function FormHarvest({ buttonLabel }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    onSubmit({
+      name, initialDate, endDate,
+    });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Input
-          placeholder="Informe o produto que será utilizado"
-          value={productName}
-          onChange={handleProductNameChange}
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <Input
-          placeholder="Informe o ano da safra vigente"
-          value={harvestYear}
-          onChange={handleHarvestYearChange}
+          placeholder="Informe a Cultura e o Ano Safra"
+          value={name}
+          onChange={handleNameChange}
         />
       </FormGroup>
 
@@ -80,4 +71,6 @@ export default function FormHarvest({ buttonLabel }) {
 
 FormHarvest.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+
 };
