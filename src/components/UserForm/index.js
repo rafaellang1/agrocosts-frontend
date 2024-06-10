@@ -7,7 +7,7 @@ import Input from '../Input';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
 
-export default function UserForm({ buttonLabel }) {
+export default function UserForm({ buttonLabel, onSubmit }) {
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
@@ -36,6 +36,10 @@ export default function UserForm({ buttonLabel }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    onSubmit({
+      name, cpf, email, password, inscription,
+    });
   };
 
   return (
@@ -92,4 +96,5 @@ export default function UserForm({ buttonLabel }) {
 
 UserForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

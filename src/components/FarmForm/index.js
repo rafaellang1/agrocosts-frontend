@@ -7,8 +7,9 @@ import Input from '../Input';
 import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
+import UsersService from '../../services/UsersService';
 
-export default function FarmForm({ buttonLabel }) {
+export default function FarmForm({ buttonLabel, onSubmit }) {
   const [productId, setProductId] = useState('001');
   const [nameProperty, setNameProperty] = useState('');
   const [inscription, setInscription] = useState('');
@@ -18,15 +19,27 @@ export default function FarmForm({ buttonLabel }) {
   const [users, setUsers] = useState([]);
 
   // req para API para solicitar os dados dos users para popular o botao: usuario no formulario
+  // useEffect(() => {
+  //   fetch('http://localhost:3001/users')
+  //     .then(async (response) => {
+  //       const json = await response.json();
+  //       setUsers(json);
+  //     })
+  //     .catch((error) => {
+  //       console.log('erro', error);
+  //     });
+  // }, []);
+
   useEffect(() => {
-    fetch('http://localhost:3001/users')
-      .then(async (response) => {
-        const json = await response.json();
-        setUsers(json);
-      })
-      .catch((error) => {
-        console.log('erro', error);
-      });
+    async function loadUsers() {
+      try {
+        const usersList = await UsersService.listUsers();
+        setUsers(usersList);
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+    loadUsers();
   }, []);
 
   function handleProductIdChange(event) {
@@ -51,13 +64,17 @@ export default function FarmForm({ buttonLabel }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    onSubmit({
+      nameProperty, inscription, sizeProperty, location, usersId,
+    });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Input
-          placeholder="Código do produto"
+          placeholder="Código fazenda"
           value={productId}
           onChange={handleProductIdChange}
         />
@@ -121,4 +138,5 @@ export default function FarmForm({ buttonLabel }) {
 
 FarmForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

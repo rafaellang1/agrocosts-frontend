@@ -7,6 +7,8 @@ import Input from '../Input';
 import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
+import FarmsService from '../../services/FarmsService';
+import HarvestsService from '../../services/HarvestsService';
 
 export default function ProductForm({ buttonLabel }) {
   const [productId, setProductId] = useState('001');
@@ -21,25 +23,47 @@ export default function ProductForm({ buttonLabel }) {
   const [harvests, setHarvests] = useState([]);
   const [harvestsId, setHarvestsId] = useState('');
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const [farmResponse, harvestResponse] = await Promise.all([
+  //         fetch('http://localhost:3001/farms'),
+  //         fetch('http://localhost:3001/harvests'),
+  //       ]);
+
+  //       const farmData = await farmResponse.json();
+  //       const harvestData = await harvestResponse.json();
+
+  //       setFarms(farmData);
+  //       setHarvests(harvestData);
+  //     } catch (error) {
+  //       console.log('erro', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
-    const fetchData = async () => {
+    async function loadFarms() {
       try {
-        const [farmResponse, harvestResponse] = await Promise.all([
-          fetch('http://localhost:3001/farms'),
-          fetch('http://localhost:3001/harvests'),
-        ]);
-
-        const farmData = await farmResponse.json();
-        const harvestData = await harvestResponse.json();
-
-        setFarms(farmData);
-        setHarvests(harvestData);
+        const farmsList = await FarmsService.listFarms();
+        setFarms(farmsList);
       } catch (error) {
-        console.log('erro', error);
+        console.log('error', error);
       }
-    };
+    }
 
-    fetchData();
+    async function loadHarvests() {
+      try {
+        const harvestsList = await HarvestsService.listHarvests();
+        setHarvests(harvestsList);
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+    loadFarms();
+    loadHarvests();
   }, []);
 
   function handleProductIdChange(event) {
