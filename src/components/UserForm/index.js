@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Form, ButtonContainer } from './style';
 
@@ -89,7 +90,12 @@ export default function UserForm({ buttonLabel, onSubmit }) {
         <Button type="submit">
           {buttonLabel}
         </Button>
+
+        <Link to="listuser">
+          <Button>Listar Usuarios</Button>
+        </Link>
       </ButtonContainer>
+
     </Form>
   );
 }

@@ -6,9 +6,12 @@ export default function EditProduct() {
     <>
       <ContentHeader
         title="Editar Produtos"
+        link="/"
       />
       <ProductForm
         buttonLabel="Salvar alterações"
+        link="/listproducts"
+
       />
     </>
   );

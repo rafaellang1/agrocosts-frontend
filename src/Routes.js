@@ -8,6 +8,10 @@ import NewHarvest from './pages/NewHarvest';
 import ReportResult from './pages/ReportResult';
 import EditUser from './pages/EditUser';
 import EditFarm from './pages/EditFarm';
+import ListUser from './pages/ListUser';
+import ListFarm from './pages/ListFarm';
+import ListProduct from './pages/ListProduct';
+import EditProduct from './pages/EditProduct';
 
 export default function Routes() {
   return (
@@ -15,9 +19,13 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/product" component={NewProduct} />
+      <Route path="/listproduct" component={ListProduct} />
+      <Route path="/editproduct/:id" component={EditProduct} />
       <Route path="/user" component={NewUser} />
+      <Route path="/listuser/" component={ListUser} />
       <Route path="/edituser/:id" component={EditUser} />
       <Route path="/farm" component={NewFarm} />
+      <Route path="/listfarm/" component={ListFarm} />
       <Route path="/editfarm/:id" component={EditFarm} />
       <Route path="/harvest" component={NewHarvest} />
       <Route path="/reports" component={ReportResult} />

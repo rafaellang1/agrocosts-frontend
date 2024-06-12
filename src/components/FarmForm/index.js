@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { Form, ButtonContainer } from './style';
@@ -131,6 +132,10 @@ export default function FarmForm({ buttonLabel, onSubmit }) {
         <Button type="submit">
           {buttonLabel}
         </Button>
+
+        <Link to="listfarm">
+          <Button>Listar Fazendas</Button>
+        </Link>
       </ButtonContainer>
     </Form>
   );

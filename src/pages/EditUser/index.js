@@ -6,6 +6,7 @@ export default function EditUser() {
     <>
       <ContentHeader
         title="Editar Usuários"
+        link="/listuser"
       />
       <UserForm
         buttonLabel="Salvar alterações"

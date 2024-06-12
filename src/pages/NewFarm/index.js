@@ -6,22 +6,26 @@ import FarmForm from '../../components/FarmForm';
 export default function NewFarm() {
   async function handleSubmit(formData) {
     // converter variaveis do backend em snake_case para camelCase
-    const farm = {
-      name: formData.nameProperty,
-      ie: formData.inscription,
-      size: formData.sizeProperty,
-      location: formData.location,
-      user_id: formData.usersId,
-    };
+    try {
+      const farm = {
+        name: formData.nameProperty,
+        ie: formData.inscription,
+        size: formData.sizeProperty,
+        location: formData.location,
+        user_id: formData.usersId,
+      };
+      const response = await FarmsService.createFarms(farm);
 
-    const response = await FarmsService.createFarms(farm);
-
-    console.log(response);
+      console.log(response);
+    } catch {
+      alert('Erro ao cadastrar fazenda');
+    }
   }
   return (
     <>
       <ContentHeader
         title="Cadastro de Fazendas"
+        link="/"
       />
       <FarmForm
         buttonLabel="Cadastrar"

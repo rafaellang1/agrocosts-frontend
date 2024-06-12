@@ -4,10 +4,10 @@ import arrow from '../../assets/images/arrow.svg';
 
 import { Container } from './style';
 
-export default function ContentHeader({ title }) {
+export default function ContentHeader({ title, link }) {
   return (
     <Container>
-      <Link to="/">
+      <Link to={link}>
         <img src={arrow} alt="voltar" />
         {/* <span>Voltar</span> */}
       </Link>
@@ -18,4 +18,5 @@ export default function ContentHeader({ title }) {
 
 ContentHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
 };

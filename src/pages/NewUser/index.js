@@ -1,6 +1,8 @@
 import ContentHeader from '../../components/ContentHeader';
 import UserForm from '../../components/UserForm';
 import UsersService from '../../services/UsersService';
+// import { Container } from './style';
+// import ListUser from '../listUsers';
 
 export default function NewUser() {
   // enviar os dados do form para o backend
@@ -22,11 +24,13 @@ export default function NewUser() {
     <>
       <ContentHeader
         title="Cadastro de Usuários"
+        link="/"
       />
       <UserForm
-        buttonLabel="Cadastrar"
+        buttonLabel="Cadastrar Usuário"
         onSubmit={handleSubmit}
       />
+
     </>
 
   );

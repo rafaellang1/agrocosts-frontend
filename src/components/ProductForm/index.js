@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { Form, ButtonContainer } from './style';
@@ -10,7 +11,7 @@ import Button from '../Button';
 import FarmsService from '../../services/FarmsService';
 import HarvestsService from '../../services/HarvestsService';
 
-export default function ProductForm({ buttonLabel, onSubmit }) {
+export default function ProductForm({ buttonLabel, onSubmit, link }) {
   const [productId, setProductId] = useState('001');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -95,12 +96,12 @@ export default function ProductForm({ buttonLabel, onSubmit }) {
   // }
 
   const handleSubmit = (event) => {
+    // Previne o Form de redirecionar a pagina ao enviar o form pelo submit
     event.preventDefault();
 
     onSubmit({
       name, description, quantity, aplicationArea, unitValue, farmsId, harvestsId,
     });
-    // Previne o Form de redirecionar a pagina ao enviar o form pelo submit
   };
 
   return (
@@ -197,6 +198,10 @@ export default function ProductForm({ buttonLabel, onSubmit }) {
         <Button type="submit">
           {buttonLabel}
         </Button>
+
+        <Link to={link}>
+          <Button>Listar Produtos</Button>
+        </Link>
       </ButtonContainer>
 
     </Form>
@@ -207,4 +212,5 @@ export default function ProductForm({ buttonLabel, onSubmit }) {
 ProductForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  link: PropTypes.string.isRequired,
 };

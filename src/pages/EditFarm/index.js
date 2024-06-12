@@ -6,6 +6,7 @@ export default function EditFarm() {
     <>
       <ContentHeader
         title="Editar Fazendas"
+        link="/listfarm"
       />
       <FarmForm
         buttonLabel="Salvar alterações"

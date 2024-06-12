@@ -24,10 +24,12 @@ export default function NewProduct() {
     <>
       <ContentHeader
         title="Cadastro de Produtos"
+        link="/"
       />
       <ProductForm
         buttonLabel="Cadastrar"
         onSubmit={handleSubmit}
+        link="/listproduct"
       />
     </>
   );
