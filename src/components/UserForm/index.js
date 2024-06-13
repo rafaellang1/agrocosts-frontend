@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, forwardRef, useImperativeHandle } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Form, ButtonContainer } from './style';
@@ -8,12 +8,25 @@ import Input from '../Input';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
 
-export default function UserForm({ buttonLabel, onSubmit }) {
+// eslint-disable-next-line react/prop-types
+const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [name, setName] = useState('');
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [inscription, setInscription] = useState('');
+
+  useImperativeHandle(ref, () => ({
+
+    // nullish operator -> null ou undefined para a direita ''
+    setFieldsValues: (user) => {
+      setName(user.name ?? '');
+      setCpf(user.cpf ?? '');
+      setEmail(user.email ?? '');
+      setPassword(user.senha ?? '');
+      setInscription(user.ie ?? '');
+    },
+  }), []);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -98,9 +111,11 @@ export default function UserForm({ buttonLabel, onSubmit }) {
 
     </Form>
   );
-}
+});
 
 UserForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default UserForm;

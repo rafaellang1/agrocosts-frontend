@@ -6,11 +6,11 @@ class ProductsService {
     this.httpClient = new HttpClient('http://localhost:3001');
   }
 
-  async listProducts() {
+  listProducts() {
     return this.httpClient.get('/products');
   }
 
-  async createProducts(product) {
+  createProducts(product) {
     return this.httpClient.post('/products', product);
   }
 }

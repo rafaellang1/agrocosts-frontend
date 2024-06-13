@@ -6,12 +6,20 @@ class UsersService {
     this.httpClient = new HttpClient('http://localhost:3001');
   }
 
-  async listUsers() {
+  listUsers() {
     return this.httpClient.get('/users');
   }
 
-  async createUsers(user) {
+  getUserById(id) {
+    return this.httpClient.get(`/users/${id}`);
+  }
+
+  createUsers(user) {
     return this.httpClient.post('/users', user);
+  }
+
+  updateUsers(id, user) {
+    return this.httpClient.put(`/users/${id}`, user);
   }
 }
 

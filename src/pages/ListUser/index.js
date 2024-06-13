@@ -7,9 +7,11 @@ import UsersService from '../../services/UsersService';
 
 import edit from '../../assets/images/edit.svg';
 import trash from '../../assets/images/trash.svg';
+import Loader from '../../components/Loader';
 
 export default function ListUser() {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsloading] = useState(true);
 
   // utilizar o useEffect para previnir que o fetch seja disparado a cada letra digitada
   // passamos o arr vazio ao final para o effect nao ser renderizado a cada renderizacao do compon.
@@ -30,10 +32,13 @@ export default function ListUser() {
   useEffect(() => {
     async function loadUsers() {
       try {
+        setIsloading(true);
         const usersList = await UsersService.listUsers();
         setUsers(usersList);
       } catch (error) {
         console.log('error', error);
+      } finally {
+        setIsloading(false);
       }
     }
     loadUsers();
@@ -41,6 +46,7 @@ export default function ListUser() {
 
   return (
     <Container>
+      <Loader isLoading={isLoading} />
       <Header>
         <strong>
           {/* se 1 singular, se + de 1 plural */}

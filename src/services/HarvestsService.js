@@ -6,11 +6,11 @@ class HarvestsService {
     this.httpClient = new HttpClient('http://localhost:3001');
   }
 
-  async listHarvests() {
+  listHarvests() {
     return this.httpClient.get('/harvests');
   }
 
-  async createHarvests(harvest) {
+  createHarvests(harvest) {
     return this.httpClient.post('/harvests', harvest);
   }
 }
