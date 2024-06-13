@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, forwardRef, useImperativeHandle,
+} from 'react';
 
 import { Form, ButtonContainer } from './style';
 
@@ -8,10 +10,11 @@ import Input from '../Input';
 import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
+// import ProductsService from '../../services/ProductsService';
 import FarmsService from '../../services/FarmsService';
 import HarvestsService from '../../services/HarvestsService';
 
-export default function ProductForm({ buttonLabel, onSubmit, link }) {
+const ProductForm = forwardRef(({ buttonLabel, onSubmit, link }, ref) => {
   const [productId, setProductId] = useState('001');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -24,26 +27,18 @@ export default function ProductForm({ buttonLabel, onSubmit, link }) {
   const [harvests, setHarvests] = useState([]);
   const [harvestsId, setHarvestsId] = useState('');
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const [farmResponse, harvestResponse] = await Promise.all([
-  //         fetch('http://localhost:3001/farms'),
-  //         fetch('http://localhost:3001/harvests'),
-  //       ]);
+  useImperativeHandle(ref, () => ({
 
-  //       const farmData = await farmResponse.json();
-  //       const harvestData = await harvestResponse.json();
-
-  //       setFarms(farmData);
-  //       setHarvests(harvestData);
-  //     } catch (error) {
-  //       console.log('erro', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+    setFieldValues: (product) => {
+      setName(product.name ?? '');
+      setDescription(product.description ?? '');
+      setQuantity(product.quantity ?? '');
+      setAplicationArea(product.aplicationArea ?? '');
+      setunitaryValue(product.unitValue ?? '');
+      setFarmsId(product.farms_id ?? '');
+      setHarvestsId(product.harvest_id ?? '');
+    },
+  }), []);
 
   useEffect(() => {
     async function loadFarms() {
@@ -207,10 +202,16 @@ export default function ProductForm({ buttonLabel, onSubmit, link }) {
     </Form>
 
   );
-}
+});
 
 ProductForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
 };
+
+ProductForm.defaultProps = {
+  link: 'link',
+};
+
+export default ProductForm;

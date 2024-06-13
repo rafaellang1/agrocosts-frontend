@@ -10,8 +10,16 @@ class ProductsService {
     return this.httpClient.get('/products');
   }
 
+  getProductById(id) {
+    return this.httpClient.get(`/products/${id}`);
+  }
+
   createProducts(product) {
     return this.httpClient.post('/products', product);
+  }
+
+  updateProducts(id, product) {
+    return this.httpClient.put(`/products/${id}`, product);
   }
 }
 
