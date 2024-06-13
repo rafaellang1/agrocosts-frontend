@@ -66,9 +66,9 @@ export default function ListUser() {
                 {product.farm_name}
               </span>
               <span>
-                Safra:
+                Safra referência:
                 {' '}
-                {product.harvest_name}
+                {product.current_harvest}
               </span>
 
             </div>

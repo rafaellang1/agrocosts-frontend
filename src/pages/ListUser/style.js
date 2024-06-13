@@ -56,7 +56,7 @@ export const Card = styled.div`
   .info {
     display: flex;
     justify-content: space-around;
-    padding: 0 20px;
+    padding: 0 15px;
     .user-name {
       display: flex;
       flex-direction: column;

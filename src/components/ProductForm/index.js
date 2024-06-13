@@ -33,9 +33,9 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit, link }, ref) => {
       setName(product.name ?? '');
       setDescription(product.description ?? '');
       setQuantity(product.quantity ?? '');
-      setAplicationArea(product.aplicationArea ?? '');
-      setunitaryValue(product.unitValue ?? '');
-      setFarmsId(product.farms_id ?? '');
+      setAplicationArea(product.aplication_area ?? '');
+      setunitaryValue(product.unit_value ?? '');
+      setFarmsId(product.farm_id ?? '');
       setHarvestsId(product.harvest_id ?? '');
     },
   }), []);

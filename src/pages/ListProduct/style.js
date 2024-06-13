@@ -80,6 +80,7 @@ export const Card = styled.div`
     span {
       display: block;
       font-size: 14px;
+      margin-bottom: 4px;
       color: #767676;
     }
     .actions {
