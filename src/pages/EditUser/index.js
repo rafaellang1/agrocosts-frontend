@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 
 import ContentHeader from '../../components/ContentHeader';

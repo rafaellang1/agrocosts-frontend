@@ -10,8 +10,16 @@ class FarmsService {
     return this.httpClient.get('/farms');
   }
 
+  getFarmById(id) {
+    return this.httpClient.get(`/farms/${id}`);
+  }
+
   createFarms(farm) {
     return this.httpClient.post('/farms', farm);
+  }
+
+  updateFarms(id, farm) {
+    return this.httpClient.put(`/farms/${id}`, farm);
   }
 }
 

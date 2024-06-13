@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, forwardRef, useImperativeHandle,
+} from 'react';
 
 import { Form, ButtonContainer } from './style';
 
@@ -10,7 +12,7 @@ import FormGroup from '../FormGroup';
 import Button from '../Button';
 import UsersService from '../../services/UsersService';
 
-export default function FarmForm({ buttonLabel, onSubmit }) {
+const FarmForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [productId, setProductId] = useState('001');
   const [nameProperty, setNameProperty] = useState('');
   const [inscription, setInscription] = useState('');
@@ -19,17 +21,16 @@ export default function FarmForm({ buttonLabel, onSubmit }) {
   const [usersId, setUsersId] = useState('');
   const [users, setUsers] = useState([]);
 
-  // req para API para solicitar os dados dos users para popular o botao: usuario no formulario
-  // useEffect(() => {
-  //   fetch('http://localhost:3001/users')
-  //     .then(async (response) => {
-  //       const json = await response.json();
-  //       setUsers(json);
-  //     })
-  //     .catch((error) => {
-  //       console.log('erro', error);
-  //     });
-  // }, []);
+  useImperativeHandle(ref, () => ({
+
+    setFieldValues: (farm) => {
+      setNameProperty(farm.name ?? '');
+      setInscription(farm.ie ?? '');
+      setSizeProperty(farm.size ?? '');
+      setLocation(farm.location ?? '');
+      setUsersId(farm.user_id ?? '');
+    },
+  }), []);
 
   useEffect(() => {
     async function loadUsers() {
@@ -139,9 +140,11 @@ export default function FarmForm({ buttonLabel, onSubmit }) {
       </ButtonContainer>
     </Form>
   );
-}
+});
 
 FarmForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
+
+export default FarmForm;
