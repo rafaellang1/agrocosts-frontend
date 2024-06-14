@@ -60,6 +60,7 @@ export default function ListUser() {
     setUserBeingDeleted(null);
   }
 
+  // funcao para delecao de usuario - abre no Modal
   async function handleConfirmDeleteUser() {
     try {
       await UsersService.deleteUsers(userBeingDeleted.id);
