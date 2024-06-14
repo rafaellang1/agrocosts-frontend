@@ -21,6 +21,10 @@ class UsersService {
   updateUsers(id, user) {
     return this.httpClient.put(`/users/${id}`, user);
   }
+
+  deleteUsers(id) {
+    return this.httpClient.delete(`/users/${id}`);
+  }
 }
 
 export default new UsersService();

@@ -65,6 +65,29 @@ class HttpClient {
     }
     return Promise.reject(new Error(`Requisicao falhou com o Status Code: ${response.status}`));
   }
+
+  async delete(path) {
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+
+    const response = await fetch(`${this.baseURL}${path}`, {
+      method: 'DELETE',
+      // body: JSON.stringify(body),
+      headers,
+    });
+
+    let responseBody = null;
+    const contetType = response.headers.get('Content-Type');
+    if (contetType?.includes('application/json')) {
+      responseBody = await response.json();
+    }
+
+    if (response.ok) {
+      return responseBody;
+    }
+    return Promise.reject(new Error(`Requisicao falhou com o Status Code: ${response.status}`));
+  }
 }
 
 export default HttpClient;

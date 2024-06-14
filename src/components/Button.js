@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default styled.button`
   height: 48px;
@@ -19,8 +19,15 @@ export default styled.button`
     background: #008000;
     cursor: pointer;
   }
-/*
-  &:active {
-    background: #00855555;
-  } */
+  ${({ danger }) => danger && css`
+      background: #FC5050;
+
+      &:hover {
+        background: #F97171
+      }
+
+      &:active: {
+        background: #F63131;
+      }
+  `}
 `;

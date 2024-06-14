@@ -21,6 +21,10 @@ class FarmsService {
   updateFarms(id, farm) {
     return this.httpClient.put(`/farms/${id}`, farm);
   }
+
+  deleteFarms(id) {
+    return this.httpClient.delete(`/farms/${id}`);
+  }
 }
 
 export default new FarmsService();
