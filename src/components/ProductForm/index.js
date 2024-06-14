@@ -14,7 +14,7 @@ import Button from '../Button';
 import FarmsService from '../../services/FarmsService';
 import HarvestsService from '../../services/HarvestsService';
 
-const ProductForm = forwardRef(({ buttonLabel, onSubmit, link }, ref) => {
+const ProductForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [productId, setProductId] = useState('001');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -194,8 +194,8 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit, link }, ref) => {
           {buttonLabel}
         </Button>
 
-        <Link to={link}>
-          <Button>Listar Produtos</Button>
+        <Link to="/listproduct">
+          <Button style={{ backgroundColor: '#a9a9a9' }}>Listar Produtos</Button>
         </Link>
       </ButtonContainer>
 
@@ -207,11 +207,11 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit, link }, ref) => {
 ProductForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  link: PropTypes.string,
+  // link: PropTypes.string,
 };
 
-ProductForm.defaultProps = {
-  link: 'link',
-};
+// ProductForm.defaultProps = {
+//   link: 'link',
+// };
 
 export default ProductForm;

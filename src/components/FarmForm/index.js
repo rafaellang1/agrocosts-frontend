@@ -134,8 +134,8 @@ const FarmForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
           {buttonLabel}
         </Button>
 
-        <Link to="listfarm">
-          <Button>Listar Fazendas</Button>
+        <Link to="/listfarm">
+          <Button style={{ backgroundColor: '#a9a9a9' }}>Listar Fazendas</Button>
         </Link>
       </ButtonContainer>
     </Form>

@@ -19,6 +19,7 @@ export default function NewUser() {
     const response = await UsersService.createUsers(user);
 
     console.log(response);
+    alert('Usuario cadastrado com sucesso');
   }
   return (
     <>

@@ -17,6 +17,7 @@ export default function NewFarm() {
       const response = await FarmsService.createFarms(farm);
 
       console.log(response);
+      alert('Fazenda cadastrada com sucesso');
     } catch {
       alert('Erro ao cadastrar fazenda');
     }
