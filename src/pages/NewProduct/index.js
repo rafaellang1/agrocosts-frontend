@@ -19,6 +19,7 @@ export default function NewProduct() {
     const response = await ProductsService.createProducts(product);
 
     console.log(response);
+    alert('Produto cadastrado com sucesso');
   }
   return (
     <>

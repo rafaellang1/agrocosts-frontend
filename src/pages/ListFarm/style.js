@@ -93,6 +93,7 @@ export const Card = styled.div`
       background: transparent;
       border: none;
       margin-left: 8px;
+      cursor: pointer;
     }
   }
   }

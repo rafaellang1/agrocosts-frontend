@@ -104,7 +104,7 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
           {buttonLabel}
         </Button>
 
-        <Link to="listuser">
+        <Link to="/listusers">
           <Button>Listar Usuarios</Button>
         </Link>
       </ButtonContainer>

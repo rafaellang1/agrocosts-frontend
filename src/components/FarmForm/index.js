@@ -28,7 +28,7 @@ const FarmForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       setInscription(farm.ie ?? '');
       setSizeProperty(farm.size ?? '');
       setLocation(farm.location ?? '');
-      setUsersId(farm.user_id ?? '');
+      setUsersId(farm.user_id ?? null);
     },
   }), []);
 
