@@ -83,7 +83,7 @@ export const HighCostReport = styled.div`
 
   p {
     padding-top: 5px;
-    margin-bottom: 7px;
+    margin-bottom: 2px;
     border-bottom: 2px dashed #ddd9;
 
   }

@@ -76,15 +76,15 @@ export default function CostReports() {
     const highCostReportsFiltered = filteredReports.map((report) => {
       const highCostProducts = report.farmProducts.filter((product) => {
         const productCostPerHectare = (
-          product.total_value / Number(product.aplication_area)) / bagSoya;
+          product.total_value / report.totalArea) / bagSoya;
         return productCostPerHectare > 30;
       });
 
       const highCostTotalValue = highCostProducts.reduce((total, product) => (
         total + product.total_value), 0);
 
-      const highCostTotalArea = highCostProducts.reduce((total, product) => (
-        total + Number(product.aplication_area)), 0);
+      // O tamanho da área para produtos de alto custo deve ser o mesmo da fazenda inteira
+      const highCostTotalArea = report.totalArea;
 
       const highCostCostPerHectare = (highCostTotalValue / highCostTotalArea) / bagSoya;
 
@@ -93,7 +93,6 @@ export default function CostReports() {
         totalValue: highCostTotalValue,
         totalArea: highCostTotalArea,
         costPerHectare: highCostCostPerHectare,
-        highCostProducts,
       };
     }).filter((report) => report.totalValue > 0);
 
