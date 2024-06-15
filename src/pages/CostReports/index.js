@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductsService from '../../services/ProductsService';
 import FarmsService from '../../services/FarmsService';
+import Loader from '../../components/Loader';
 
-import { ReportContainer, FarmReport } from './styles';
+import {
+  ReportContainer, FarmReport, Header,
+  HighCostReport,
+} from './styles';
 
 export default function CostReports() {
   const { harvest } = useParams();
   const [farmReports, setFarmReports] = useState([]);
+  const [highCostReports, setHighCostReports] = useState([]);
   const [products, setProducts] = useState([]);
   const [farms, setFarms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,10 +43,12 @@ export default function CostReports() {
   }, []);
 
   useEffect(() => {
+    const bagSoya = 60;
     if (products.length === 0 || farms.length === 0) return;
 
     const reports = farms.map((farm) => {
-      // Filtrar produtos da fazenda e safra
+      // Filtrar id fazenda cad prod igual fazenda cadastrada
+      // E se safra cadastrada no produto igual ao safra referencia
       const farmProducts = products.filter((product) => (
         product.farm_id === farm.id && product.current_harvest === harvest));
 
@@ -50,57 +57,151 @@ export default function CostReports() {
 
       const totalArea = Number(farm.size);
 
-      // Preço da soja
-      const sojaPrice = 120;
-      const costPerHectare = (totalValue / totalArea) / sojaPrice;
+      // saco da soja 60kg
+      const costPerHectare = (totalValue / totalArea) / bagSoya;
 
       return {
         farmName: farm.name,
         totalValue,
         totalArea,
         costPerHectare,
+        farmProducts, // Adicionando farmProducts ao relatório
       };
     });
 
     // Filtrar relatórios para fazendas que têm produtos na safra atual
     const filteredReports = reports.filter((report) => report.totalValue > 0);
 
+    // Fazendas com alto Custo de Producao
+    const highCostReportsFiltered = filteredReports.map((report) => {
+      const highCostProducts = report.farmProducts.filter((product) => {
+        const productCostPerHectare = (
+          product.total_value / Number(product.aplication_area)) / bagSoya;
+        return productCostPerHectare > 30;
+      });
+
+      const highCostTotalValue = highCostProducts.reduce((total, product) => (
+        total + product.total_value), 0);
+
+      const highCostTotalArea = highCostProducts.reduce((total, product) => (
+        total + Number(product.aplication_area)), 0);
+
+      const highCostCostPerHectare = (highCostTotalValue / highCostTotalArea) / bagSoya;
+
+      return {
+        farmName: report.farmName,
+        totalValue: highCostTotalValue,
+        totalArea: highCostTotalArea,
+        costPerHectare: highCostCostPerHectare,
+        highCostProducts,
+      };
+    }).filter((report) => report.totalValue > 0);
+
     setFarmReports(filteredReports);
+    setHighCostReports(highCostReportsFiltered);
   }, [harvest, products, farms]);
 
   return (
     <ReportContainer>
-      <h2>
+      <Header>
         Relatório de Custos -
-        {harvest}
-      </h2>
+        {' '}
+        <span>
+          Safra
+          {' '}
+          {harvest}
+        </span>
+      </Header>
       {isLoading ? (
-        <p>Carregando...</p>
+        <>
+          <Loader isLoading />
+          <p>Carregando...</p>
+        </>
       ) : (
         farmReports.map((report) => (
-          <FarmReport key={report.farmName}>
-            <h3>
-              Fazenda:
-              {report.farmName}
-            </h3>
-            <p>
-              Gasto Total: R$
-              {report.totalValue.toFixed(2)}
-            </p>
-            <p>
-              Área da Fazenda:
-              {report.totalArea}
-              {' '}
-              hectares
-            </p>
-            <p>
-              Custo por Hectare:
-              {report.costPerHectare.toFixed(2)}
-              {' '}
-              sc/ha
-            </p>
-          </FarmReport>
+          <React.Fragment key={report.farmName}>
+            <FarmReport>
+              <h3>
+                Fazenda:
+                {' '}
+                <span>{report.farmName}</span>
+              </h3>
+              <p>
+                Gasto Total:
+                {' '}
+                <strong>
+                  R$
+                  {report.totalValue.toFixed(2)}
+                </strong>
+              </p>
+              <p>
+                Área da Fazenda:
+                {' '}
+                <strong>
+                  {report.totalArea}
+                  {' '}
+                  hectares
+                </strong>
+              </p>
+              <p>
+                Custo por Hectare:
+                {' '}
+                <i>
+                  {report.costPerHectare.toFixed(2)}
+                  {' '}
+                  sc/ha
+                </i>
+              </p>
+            </FarmReport>
+          </React.Fragment>
         ))
+      )}
+      {highCostReports.length > 0 && (
+        <HighCostReport>
+          <h2>
+            Fazendas com
+            {' '}
+            <i>Alto Custo</i>
+            {' '}
+            de produção
+          </h2>
+          <h4>[Maior que 30 sc/ha]</h4>
+          {highCostReports.map((report) => (
+            <div key={report.farmName}>
+              <h3>
+                Fazenda:
+                {' '}
+                <span>{report.farmName}</span>
+              </h3>
+              <p>
+                Gasto Total:
+                {' '}
+                <strong>
+                  R$
+                  {report.totalValue.toFixed(2)}
+                </strong>
+              </p>
+              <p>
+                Área da Fazenda:
+                {' '}
+                <strong>
+                  {report.totalArea}
+                  {' '}
+                  hectares
+                </strong>
+              </p>
+              <p>
+                Custo por Hectare:
+                {' '}
+                <i>
+                  {report.costPerHectare.toFixed(2)}
+                  {' '}
+                  sc/ha
+                </i>
+              </p>
+            </div>
+          ))}
+        </HighCostReport>
       )}
     </ReportContainer>
   );

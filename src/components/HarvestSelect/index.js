@@ -4,19 +4,21 @@ import { Link } from 'react-router-dom';
 
 import { HarvestButtonContainer, HarvestButton, Header } from './styles';
 import HarvestsService from '../../services/HarvestsService';
-// import Loader from '../Loader';
 
 export default function HarvestSelect() {
   const [harvests, setHarvest] = useState([]);
-  // const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function loadFarms() {
+      setIsLoading(true);
       try {
         const harvestList = await HarvestsService.listHarvests();
         setHarvest(harvestList);
       } catch (error) {
         console.log('error', error);
+      } finally {
+        setIsLoading(false);
       }
     }
     loadFarms();
@@ -30,13 +32,17 @@ export default function HarvestSelect() {
           {harvests.length === 1 ? ' safra cadastrada' : ' safras cadastradas'}
         </strong>
       </Header>
-      <HarvestButtonContainer>
-        {harvests.map((harvest) => (
-          <Link to={`/costreport/${harvest.name}`} key={harvest.id}>
-            <HarvestButton>{harvest.name}</HarvestButton>
-          </Link>
-        ))}
-      </HarvestButtonContainer>
+      {isLoading ? (
+        <p>Carregando...</p>
+      ) : (
+        <HarvestButtonContainer>
+          {harvests.map((harvest) => (
+            <Link to={`/costreport/${harvest.name}`} key={harvest.id}>
+              <HarvestButton>{harvest.name}</HarvestButton>
+            </Link>
+          ))}
+        </HarvestButtonContainer>
+      )}
     </>
   );
 }
