@@ -23,13 +23,13 @@ export const HarvestButtonContainer = styled.div`
 `;
 
 export const HarvestButton = styled.button`
-  padding: 25px;
+  padding: 30px;
   background-color: #00920E;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 500;
 
 
