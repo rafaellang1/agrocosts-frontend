@@ -5,13 +5,14 @@ import NewProduct from './pages/NewProduct';
 import NewUser from './pages/NewUser';
 import NewFarm from './pages/NewFarm';
 import NewHarvest from './pages/NewHarvest';
-import ReportResult from './pages/ReportResult';
 import EditUser from './pages/EditUser';
 import EditFarm from './pages/EditFarm';
 import ListUser from './pages/ListUser';
 import ListFarm from './pages/ListFarm';
 import ListProduct from './pages/ListProduct';
 import EditProduct from './pages/EditProduct';
+import CostReports from './pages/CostReports';
+import HarvestSelect from './components/HarvestSelect';
 
 export default function Routes() {
   return (
@@ -28,7 +29,9 @@ export default function Routes() {
       <Route path="/listfarm/" component={ListFarm} />
       <Route path="/editfarm/:id" component={EditFarm} />
       <Route path="/harvest" component={NewHarvest} />
-      <Route path="/reports" component={ReportResult} />
+
+      <Route path="/harvestselect" component={HarvestSelect} />
+      <Route path="/costreport/:harvest" component={CostReports} />
     </Switch>
   );
 }

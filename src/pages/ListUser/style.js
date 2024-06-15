@@ -18,35 +18,18 @@ export const Header = styled.header`
   border-bottom: 2px solid #ddd9;
   padding-bottom: 16px;
 
-
   strong {
     font-size: 28px;
-  }
-
-  a {
-    color: green;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid green;;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: all 0.2s ease-in;
-
-    &:hover {
-      background: green;
-      color: #FFF;
-    }
   }
   `;
 
 export const Card = styled.div`
   background: #FFF;
+  max-width: 550px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
-  padding: 16px;
+  padding: 22px;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 
   /* toda vez que tiver um elemento (card) seguindo do outro, adicione o margin */
   & + & {
@@ -56,7 +39,8 @@ export const Card = styled.div`
   .info {
     display: flex;
     justify-content: space-around;
-    padding: 0 15px;
+    padding: 0 20px;
+    max-width: 500px;
     .user-name {
       display: flex;
       flex-direction: column;
@@ -81,6 +65,7 @@ export const Card = styled.div`
     span {
       display: block;
       font-size: 14px;
+      margin-bottom: 4px;
       color: #767676;
     }
     .actions {
@@ -96,6 +81,7 @@ export const Card = styled.div`
       margin-left: 8px;
       cursor: pointer;
     }
+
   }
   }
 `;

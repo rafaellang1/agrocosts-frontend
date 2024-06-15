@@ -50,7 +50,7 @@ export default function PageHeader() {
 
         <Card>
           <div className="head">
-            <Link to="/reports">
+            <Link to="/harvestselect">
               <img src={report} alt="icon-user" width="50" />
               <strong>Relatórios</strong>
             </Link>

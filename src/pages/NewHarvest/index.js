@@ -19,6 +19,8 @@ export default function NewHarvest() {
     <>
       <ContentHeader
         title="Cadastro da Safra Atual"
+        link="/"
+
       />
       <FormHarvest
         buttonLabel="Cadastrar"
