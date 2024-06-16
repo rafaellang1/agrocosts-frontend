@@ -5,8 +5,8 @@ export const Container = styled.header`
   width: 100%;
   background: #00920F;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  justify-content: space-between;
 
   img {
     margin: 30px;

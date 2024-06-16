@@ -64,6 +64,8 @@ export const HighCostReport = styled.div`
     margin-bottom: 5px;
     color: #CC2501;
     text-transform: uppercase;
+    text-align: center;
+
   }
   h3 {
     font-weight: 500;

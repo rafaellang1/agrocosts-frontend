@@ -1,5 +1,3 @@
-/* eslint no-use-before-define: 2 */ // --> ON
-
 import React from 'react';
 import {
   render, screen, fireEvent,

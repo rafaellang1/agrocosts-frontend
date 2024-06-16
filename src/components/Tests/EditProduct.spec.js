@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import EditProduct from '../../pages/EditProduct';
 import ProductsService from '../../services/ProductsService';
 
-// Mock do ProductForm usando React.forwardRef corretamente
 jest.mock('../../components/ProductForm', () => {
   const ProductForm = React.forwardRef(({ buttonLabel, onSubmit }, ref) => {
     const setFieldValues = jest.fn();
