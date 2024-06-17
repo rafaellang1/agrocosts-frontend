@@ -30,4 +30,9 @@ export default styled.button`
         background: #F63131;
       }
   `}
+
+  &[disabled] {
+    background: #CCC;
+    cursor: default;
+  }
 `;

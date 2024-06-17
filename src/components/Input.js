@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default styled.input`
   width: 100%;
@@ -18,4 +18,10 @@ export default styled.input`
   &:focus {
     border-color: #777;
   }
+
+  /* seta cores de erro nos campos de formulario */
+  ${({ error }) => error && css`
+    color: #FC5050;
+    border-color: #FC5050 !important;
+  `}
 `;

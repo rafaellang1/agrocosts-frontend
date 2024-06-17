@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
-import { useState, forwardRef, useImperativeHandle } from 'react';
+import {
+  useState, useEffect, forwardRef, useImperativeHandle,
+} from 'react';
 import { Link } from 'react-router-dom';
 
+// import isEmailValid from '../../utils/isEmailValid';
 import { Form, ButtonContainer } from './style';
 
 import Input from '../Input';
@@ -15,6 +18,14 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [inscription, setInscription] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    // Verifica se todos os campos estão preenchidos
+    const allFieldsFilled = name && email && cpf && inscription && password;
+    setIsFormValid(allFieldsFilled);
+  }, [name, email, cpf, inscription, password]);
 
   useImperativeHandle(ref, () => ({
 
@@ -30,22 +41,86 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
   function handleNameChange(event) {
     setName(event.target.value);
-  }
 
-  function handleCpfChange(event) {
-    setCpf(event.target.value);
+    // validacao do campo nome no form
+    if (!event.target.value) {
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'name', message: 'Campo nome é obrigatório.' },
+      ]);
+    } else {
+      // remove logs de nome invalido
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'name',
+      ));
+    }
   }
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
+    // validacao do campo nome no form
+    if (!event.target.value) {
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'email', message: 'Campo email é obrigatório.' },
+      ]);
+    } else {
+      // remove logs de nome invalido
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'email',
+      ));
+    }
+  }
+
+  function handleCpfChange(event) {
+    setCpf(event.target.value);
+    if (!event.target.value) {
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'cpf', message: 'Campo CPF é obrigatório.' },
+      ]);
+    } else {
+      // remove logs de nome invalido
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'cpf',
+      ));
+    }
   }
 
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+    if (!event.target.value) {
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'password', message: 'Campo senha é obrigatório.' },
+      ]);
+    } else {
+      // remove logs de nome invalido
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'password',
+      ));
+    }
   }
 
   function handleInscriptionChange(event) {
     setInscription(event.target.value);
+    // validacao do campo nome no form
+    if (!event.target.value) {
+      setErrors((prevState) => [
+        ...prevState,
+        { field: 'inscription', message: 'Inscrição Estadual é obrigatória.' },
+      ]);
+    } else {
+      // remove logs de nome invalido
+      setErrors((prevState) => prevState.filter(
+        (error) => error.field !== 'inscription',
+      ));
+    }
+  }
+
+  // capturar a mensagem de erro do log de nome obrigatorio
+  function getErrorMessageByFieldName(fieldName) {
+    return errors.find((error) => error.field === fieldName)?.message;
   }
 
   const handleSubmit = (event) => {
@@ -58,54 +133,60 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
-          placeholder="Nome"
+          error={getErrorMessageByFieldName('name')}
+          placeholder="Nome *"
           value={name}
           onChange={handleNameChange}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
+          error={getErrorMessageByFieldName('email')}
           type="email"
-          placeholder="Email"
+          placeholder="Email *"
           value={email}
           onChange={handleEmailChange}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('cpf')}>
         <Input
-          placeholder="CPF"
+          error={getErrorMessageByFieldName('cpf')}
+          placeholder="CPF *"
           value={cpf}
           onChange={handleCpfChange}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('password')}>
         <Input
-          placeholder="Senha"
+          error={getErrorMessageByFieldName('password')}
+          placeholder="Senha *"
           value={password}
           onChange={handlePasswordChange}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('inscription')}>
         <Input
-          placeholder="Inscrição Estadual"
+          error={getErrorMessageByFieldName('inscription')}
+          placeholder="Inscrição Estadual *"
           value={inscription}
           onChange={handleInscriptionChange}
         />
       </FormGroup>
+      <span>Todos os campos são obrigatórios *</span>
 
       <ButtonContainer>
-        <Button type="submit">
+        <Button type="submit" disabled={!isFormValid}>
           {buttonLabel}
         </Button>
 
         <Link to="/listuser">
-          <Button style={{ backgroundColor: '#a9a9a9' }}>Listar Usuarios</Button>
+          <Button style={{ backgroundColor: '#0A3D00' }}>Listar Usuarios</Button>
         </Link>
       </ButtonContainer>
 
