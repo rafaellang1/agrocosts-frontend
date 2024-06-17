@@ -53,7 +53,7 @@ export default function Login() {
         </FormGroup>
         <Button type="submit">Acessar</Button>
         <span>
-          Novo usuário?
+          Não tem cadastro?
           {' '}
           <Link to="/user">Crie sua conta</Link>
         </span>

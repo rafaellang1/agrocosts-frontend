@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Form, ButtonContainer } from './style';
 
@@ -11,6 +11,13 @@ export default function FormHarvest({ buttonLabel, onSubmit }) {
   const [name, setName] = useState('');
   const [initialDate, setInitialDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    // Verifica se todos os campos estão preenchidos
+    const allFieldsFilled = name && initialDate && endDate;
+    setIsFormValid(allFieldsFilled);
+  }, [name, initialDate, endDate]);
 
   function handleNameChange(event) {
     setName(event.target.value);
@@ -59,9 +66,10 @@ export default function FormHarvest({ buttonLabel, onSubmit }) {
           onChange={handleEndDateChange}
         />
       </FormGroup>
+      <span>Todos os campos são obrigatórios *</span>
 
       <ButtonContainer>
-        <Button type="submit">
+        <Button type="submit" disabled={!isFormValid}>
           {buttonLabel}
         </Button>
       </ButtonContainer>

@@ -20,10 +20,6 @@ export const Header = styled.header`
     margin-left: 24px;
 
   }
-
-    /* strong {
-      margin-top: 555px;
-    } */
 `;
 
 export const Card = styled.div`

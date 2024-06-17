@@ -12,8 +12,6 @@ function Logout() {
 
   return (
     <div>
-      <h2>Logout</h2>
-      <p>Você foi desconectado com sucesso.</p>
       <LogoutButton onLogout={handleLogout} />
     </div>
   );

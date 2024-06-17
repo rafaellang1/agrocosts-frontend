@@ -29,7 +29,7 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 
   useImperativeHandle(ref, () => ({
 
-    // nullish operator -> null ou undefined para a direita ''
+    // nullish operator -> null ou undefined vai para a direita e adiciona string vazia ''
     setFieldsValues: (user) => {
       setName(user.name ?? '');
       setCpf(user.cpf ?? '');

@@ -14,6 +14,7 @@ export default function NewHarvest() {
     const response = await HarvestsService.createHarvests(harvest);
 
     console.log(response);
+    alert('Safra cadastrada com sucesso');
   }
   return (
     <>

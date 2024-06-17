@@ -20,6 +20,15 @@ const FarmForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [location, setLocation] = useState('');
   const [usersId, setUsersId] = useState('');
   const [users, setUsers] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Verifica se todos os campos estão preenchidos
+  useEffect(() => {
+    const allFieldsFilled = (
+      nameProperty && inscription && sizeProperty && location && users
+    );
+    setIsFormValid(allFieldsFilled);
+  }, [nameProperty, inscription, sizeProperty, location, users]);
 
   useImperativeHandle(ref, () => ({
 
@@ -129,13 +138,14 @@ const FarmForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
         </Select>
       </FormGroup>
 
+      <span>Todos os campos são obrigatórios *</span>
       <ButtonContainer>
-        <Button type="submit">
+        <Button type="submit" disabled={!isFormValid}>
           {buttonLabel}
         </Button>
 
         <Link to="/listfarm">
-          <Button style={{ backgroundColor: '#a9a9a9' }}>Listar Fazendas</Button>
+          <Button style={{ backgroundColor: '#0A3D00' }}>Listar Fazendas</Button>
         </Link>
       </ButtonContainer>
     </Form>

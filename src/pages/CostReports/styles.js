@@ -79,7 +79,7 @@ export const HighCostReport = styled.div`
   }
 
   span {
-    color: #00920E;
+    color: #E07C66;
     font-weight: 600;
   }
 
@@ -94,7 +94,7 @@ export const HighCostReport = styled.div`
     font-style: normal;
     font-weight: 900;
     text-decoration: underline;
-
+    color: #510E00;
     font-size: 18px;
 
   }

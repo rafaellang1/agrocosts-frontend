@@ -10,7 +10,6 @@ import Input from '../Input';
 import Select from '../Select';
 import FormGroup from '../FormGroup';
 import Button from '../Button';
-// import ProductsService from '../../services/ProductsService';
 import FarmsService from '../../services/FarmsService';
 import HarvestsService from '../../services/HarvestsService';
 
@@ -26,6 +25,15 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [farmsId, setFarmsId] = useState('');
   const [harvests, setHarvests] = useState([]);
   const [harvestsId, setHarvestsId] = useState('');
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Verifica se todos os campos estão preenchidos
+  useEffect(() => {
+    const allFieldsFilled = (
+      name && description && quantity && aplicationArea && unitValue && farms && harvests
+    );
+    setIsFormValid(allFieldsFilled);
+  }, [name, description, quantity, aplicationArea, unitValue, farms, harvests]);
 
   useImperativeHandle(ref, () => ({
 
@@ -89,6 +97,7 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   // function handleTotalValueChange(event) {
   //   setTotalValue(event.target.value);
   // }
+  // (DB calcula automatico o totalValue)
 
   const handleSubmit = (event) => {
     // Previne o Form de redirecionar a pagina ao enviar o form pelo submit
@@ -188,14 +197,15 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
           ))}
         </Select>
       </FormGroup>
+      <span>Todos os campos são obrigatórios *</span>
 
       <ButtonContainer>
-        <Button type="submit">
+        <Button type="submit" disabled={!isFormValid}>
           {buttonLabel}
         </Button>
 
         <Link to="/listproduct">
-          <Button style={{ backgroundColor: '#a9a9a9' }}>Listar Produtos</Button>
+          <Button style={{ backgroundColor: '#0A3D00' }}>Listar Produtos</Button>
         </Link>
       </ButtonContainer>
 
@@ -207,11 +217,6 @@ const ProductForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
 ProductForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  // link: PropTypes.string,
 };
-
-// ProductForm.defaultProps = {
-//   link: 'link',
-// };
 
 export default ProductForm;

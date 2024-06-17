@@ -58,18 +58,8 @@ export default function EditUser() {
       setUserName(updatedUserData.name);
       console.log(response);
       console.log('Usuario editado com sucesso');
-
-      // ## implementar posteriormente o toast
-      // toast({
-      //   type: 'sucess',
-      //   text: 'Usuario criado com sucesso',
-      // });
     } catch (error) {
       console.log('error', error);
-      // toast({
-      //   type: 'danger',
-      //   text: 'Erro ao cadastrar usuario',
-      // });
     }
   }
   return (
