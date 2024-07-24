@@ -7,4 +7,8 @@ Este projeto é um guia para consultas, criado para a pratica de criacao de form
 
 Este e um CRUD para usuarios, fazendas, produtos e safra
 
-#### Em desenvolvimento...
+### Instrucoes...
+
+## Abrir o projeto e executar: yarn ou npm para instalar as dependencias
+
+### Iniciar o projeto com yarn start

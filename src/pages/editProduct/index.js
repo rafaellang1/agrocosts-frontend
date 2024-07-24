@@ -55,8 +55,8 @@ export default function EditProduct() {
         product,
       );
       setProductName(updatedProductData.name);
-      console.log('Produto editado com sucesso');
       console.log(response);
+      alert('Produto editado com sucesso');
     } catch {
       alert('Erro ao editar produto');
     }

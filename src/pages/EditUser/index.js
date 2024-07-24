@@ -58,6 +58,7 @@ export default function EditUser() {
       setUserName(updatedUserData.name);
       console.log(response);
       console.log('Usuario editado com sucesso');
+      alert('Usuario editado com sucesso');
     } catch (error) {
       console.log('error', error);
     }

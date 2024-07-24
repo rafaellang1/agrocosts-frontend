@@ -164,6 +164,7 @@ const UserForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       <FormGroup error={getErrorMessageByFieldName('password')}>
         <Input
           error={getErrorMessageByFieldName('password')}
+          type="password"
           placeholder="Senha *"
           value={password}
           onChange={handlePasswordChange}
