@@ -28,15 +28,15 @@ yarn start
 ## Layout
 
 <details open>
-<summary>Expanda para visualizar</summary>
+<summary>Visualize as imagens do projeto</summary>
 <br>
-#### pagina Home
-![homepage](https://github.com/rafaellang1/agrocosts-frontend/blob/main/.github/Home.png)
-<br>
-#### Relatórios
-![Reports](https://github.com/rafaellang1/agrocosts-frontend/blob/main/.github/Reports.png)
-</details>
+<strong>Pagina Home</strong>
+<img src="https://github.com/rafaellang1/agrocosts-frontend/blob/main/.github/Home.png" alt="homepage">
 
+<br>
+<Strong>Relatórios</strong>
+<img src="https://github.com/rafaellang1/agrocosts-frontend/blob/main/.github/Reports.png" alt="reports">
+</details>
 
 
 
